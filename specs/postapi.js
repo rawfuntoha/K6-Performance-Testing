@@ -12,11 +12,12 @@ export default function () {
         username:'kminchelle',
         password: '0lelplR',
     });
+    
     const params = {
         headers:{
             'Content-Type' : 'applicaiton/json',
         }
-        
+
     }
 
     http.post('https://dummyjson.com/auth/login');
