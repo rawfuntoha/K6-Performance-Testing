@@ -1,9 +1,10 @@
 import http from "k6/http";
-import { sleep } from "k6";
+import { sleep } from 'k6';
+import {check} from 'k6';
 
 export const options = {
-  vus: 10,
-  duration: "30s",
+  vus: 1,
+  duration: "5s",
 };
 
 export default function () {
@@ -12,13 +13,17 @@ export default function () {
         username:'kminchelle',
         password: '0lelplR',
     });
-    
+
     const params = {
         headers:{
-            'Content-Type' : 'applicaiton/json',
+            'Content-Type' : 'application/json'
         }
 
     }
+    const res = http.post(url,payload,params);
+    check(res,{
+        'is status 200': (r) => r.status === 200,
+        'is response body has username': (r) => r.body.includes('kminchelle'),
+    })
 
-    http.post('https://dummyjson.com/auth/login');
 }
