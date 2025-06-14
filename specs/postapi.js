@@ -16,6 +16,7 @@ export default function () {
         headers:{
             'Content-Type' : 'applicaiton/json',
         }
+        
     }
 
     http.post('https://dummyjson.com/auth/login');
